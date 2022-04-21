@@ -6,6 +6,25 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    private GameObject[] enemies;
+    private List<GameObject> countenemies;
+
+    public void Start()
+    {
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach(GameObject b in enemies)
+        {
+            countenemies.Add(b);
+        }
+    }
+
+    private void Update()
+    {
+        if(countenemies.Count<=0)
+        {
+            //end menu(next lvl, restart, quit)
+        }
+    }
     public void QuitGame()
     {
         Application.Quit();

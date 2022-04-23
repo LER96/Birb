@@ -5,32 +5,15 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int HP=1;
-    private bool alive = true;
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(!alive)
+        if (collision.collider.CompareTag("Bird"))
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
-    }
-
-    private bool IsAlive()
-    {
-        if (HP > 0)
+        else if (collision.contacts[0].normal.y < 0.5)
         {
-            return alive = true;
-        }
-        else
-            return alive = false;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.CompareTag("Player"))
-        {
-            alive = false;
+            Destroy(gameObject);
         }
     }
 }

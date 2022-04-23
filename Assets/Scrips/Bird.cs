@@ -15,6 +15,7 @@ public class Bird : MonoBehaviour
             StartCoroutine(DestroyBird());
         }
 
+
         IEnumerator DestroyBird()
         {
             yield return new WaitForSeconds(1.3f);

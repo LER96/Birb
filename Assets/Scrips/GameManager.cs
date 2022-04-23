@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     WinCondition hold;
     public void Start()
     {
+        losecanvas.SetActive(false);
+        wincanvas.SetActive(false);
         s = slinger.GetComponent<Slingshot>();
         hold = enemyHold.GetComponent<WinCondition>();
     }

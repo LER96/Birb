@@ -16,7 +16,7 @@ public class Slingshot : MonoBehaviour
 
     public Vector3 currentPosition;
  
-    bool isMouseDown;
+    bool isMouseDown;  
     public float maxLength;
     public float bottomBoundry;
     public float birdOffset;
@@ -56,14 +56,15 @@ public class Slingshot : MonoBehaviour
     }
 
     void CreateBirds()
-    {
-        bird = Instantiate(birdPrefabs).GetComponent<Rigidbody2D>();
-        birdCollider = bird.GetComponent<Collider2D>();
-        birdCollider.enabled = false;
+    {     
+          bird = Instantiate(birdPrefabs).GetComponent<Rigidbody2D>();
+          birdCollider = bird.GetComponent<Collider2D>();
+          birdCollider.enabled = false;
 
-        bird.isKinematic = true;
+          bird.isKinematic = true;
 
-        ResetStrips();
+          ResetStrips();
+          
     }
 
     void ResetStrips()
@@ -74,6 +75,7 @@ public class Slingshot : MonoBehaviour
 
     void SetStrips(Vector3 position)
     {
+       
         lineRenderer[0].SetPosition(1, position);
         lineRenderer[1].SetPosition(1, position);
         if (bird)
@@ -81,20 +83,18 @@ public class Slingshot : MonoBehaviour
             Vector3 direction = position - center.position;
             bird.transform.position = position + direction.normalized * birdOffset;
             bird.transform.right = -direction.normalized;
-        }
+        }      
     }
 
     void Shoot()
     {
         bird.isKinematic = false;
-
         Vector3 birdForce = (currentPosition - center.position) * force * -1;
         bird.velocity = birdForce;
-
         bird = null;
-        birdCollider = null;
+        birdCollider = null;       
         Invoke("CreateBirds", 2);
-        count--;
+        count--;     
     }
 
     private void OnMouseDown()

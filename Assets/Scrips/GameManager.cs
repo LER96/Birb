@@ -6,27 +6,29 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private GameObject[] enemies;
-    private List<GameObject> countenemies;
-    public Slingshot slinger;
+    public GameObject wincanvas;
+    public GameObject losecanvas;
+    public GameObject slinger;
+    public GameObject enemyHold;
+    Slingshot s;
+    WinCondition hold;
     public void Start()
     {
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach(GameObject b in enemies)
-        {
-            countenemies.Add(b);
-        }
+        s = slinger.GetComponent<Slingshot>();
+        hold = enemyHold.GetComponent<WinCondition>();
     }
 
     private void Update()
     {
-        if(countenemies.Count<=0)
+        if(s.count<=0 && hold.check)
         {
-            //end menu(next lvl, restart, quit)
+            losecanvas.SetActive(true);
+            Time.timeScale = 0;
         }
-        if(slinger.count<=0)
+        if(hold.check==false && s.count>0)
         {
-
+            wincanvas.SetActive(true);
+            Time.timeScale = 0;
         }
     }
     public void QuitGame()

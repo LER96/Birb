@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     private GameObject[] enemies;
     private List<GameObject> countenemies;
-
+    public Slingshot slinger;
     public void Start()
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
         if(countenemies.Count<=0)
         {
             //end menu(next lvl, restart, quit)
+        }
+        if(slinger.count<=0)
+        {
+
         }
     }
     public void QuitGame()

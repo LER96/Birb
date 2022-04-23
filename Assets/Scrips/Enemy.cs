@@ -6,11 +6,11 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public int HP=1;
-
+    private bool alive = true;
     // Update is called once per frame
     void Update()
     {
-        if(!IsAlive())
+        if(!alive)
         {
             Destroy(this.gameObject);
         }
@@ -20,9 +20,17 @@ public class Enemy : MonoBehaviour
     {
         if (HP > 0)
         {
-            return true;
+            return alive = true;
         }
         else
-            return false;
+            return alive = false;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            alive = false;
+        }
     }
 }

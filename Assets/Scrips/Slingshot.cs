@@ -10,6 +10,7 @@ public class Slingshot : MonoBehaviour
     public Transform idlePosition;
     public GameObject birdPrefabs;
 
+    public int count;
     Rigidbody2D bird;
     Collider2D birdCollider;
 
@@ -23,6 +24,7 @@ public class Slingshot : MonoBehaviour
 
     private void Start()
     {
+        count = 3;
         lineRenderer[0].positionCount = 2;
         lineRenderer[1].positionCount = 2;
         lineRenderer[0].SetPosition(0, stripPosition[0].position);
@@ -38,7 +40,7 @@ public class Slingshot : MonoBehaviour
             Vector3 mousePosition = Input.mousePosition;
             mousePosition.z = 10;
             currentPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            currentPosition = center.position + Vector3.ClampMagnitude(currentPosition - center.position , maxLength);
+            currentPosition = center.position + Vector3.ClampMagnitude(currentPosition - center.position, maxLength);
             currentPosition = ClampBoundry(currentPosition);
             SetStrips(currentPosition);
 
@@ -51,7 +53,6 @@ public class Slingshot : MonoBehaviour
         {
             ResetStrips();
         }
-
     }
 
     void CreateBirds()
@@ -80,7 +81,7 @@ public class Slingshot : MonoBehaviour
             Vector3 direction = position - center.position;
             bird.transform.position = position + direction.normalized * birdOffset;
             bird.transform.right = -direction.normalized;
-        }      
+        }
     }
 
     void Shoot()
@@ -93,6 +94,7 @@ public class Slingshot : MonoBehaviour
         bird = null;
         birdCollider = null;
         Invoke("CreateBirds", 2);
+        count--;
     }
 
     private void OnMouseDown()

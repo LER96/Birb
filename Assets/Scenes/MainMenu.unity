@@ -562,6 +562,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc373fdd401f9e14a9a9fc282239f38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wincanvas: {fileID: 0}
+  losecanvas: {fileID: 0}
+  slinger: {fileID: 0}
+  enemyHold: {fileID: 0}
 --- !u!1 &486018007
 GameObject:
   m_ObjectHideFlags: 0
@@ -1540,7 +1544,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
   EmissionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     rateOverTime:
       serializedVersion: 2

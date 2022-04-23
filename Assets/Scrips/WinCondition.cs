@@ -5,7 +5,7 @@ using UnityEngine;
 public class WinCondition : MonoBehaviour
 {
     public Enemy[] enemies;
-
+    public GameObject winCanvas;
     private void Update()
     {
         foreach (Enemy Enemies in enemies)
@@ -15,7 +15,7 @@ public class WinCondition : MonoBehaviour
                 return;
             }
         }
-        Debug.Log("Move to next level");
+        winCanvas.SetActive(true);
     }
 
 }
